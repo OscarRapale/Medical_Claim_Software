@@ -2,13 +2,15 @@ class CreateClaims < ActiveRecord::Migration[7.0]
   def change
     create_table :claims do |t|
       t.references :patient, null: false, foreign_key: true
-      t.references :claim_import, null: false, foreign_key: true
-      t.string :claim_number
-      t.date :service_date
-      t.decimal :amount
-      t.string :status
+      t.references :claim_import, null: true, foreign_key: true
+      t.string :claim_number, null: false
+      t.date :service_date, null: false
+      t.decimal :amount, precision: 10, scale: 2, null: false
+      t.string :status, null: false, default: "pending"
 
       t.timestamps
     end
+
+    add_index :claims, :claim_number, unique: true
   end
 end
