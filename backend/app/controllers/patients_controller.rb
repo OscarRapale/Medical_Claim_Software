@@ -13,7 +13,7 @@ class PatientsController < ApplicationController
   end
 
   # POST /patients
-  def created
+  def create
     patient = Patient.new(patient_params)
 
     if patient.save

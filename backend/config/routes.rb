@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   post "/auth/register", to: "authentication#register"
   get "/auth/me", to: "authentication#me"
 
+  # CRUD resources
+  resources :patients
+  resources :claims
+
   # Health check
   get "/health", to: proc { [200, {}, ["OK"]] }
 end

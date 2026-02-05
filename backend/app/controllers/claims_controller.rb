@@ -7,7 +7,7 @@ class ClaimsController < ApplicationController
 
     # Optional filtering by status
     if params[:status].present?
-      claims claims.where(status: params[:status])
+      claims = claims.where(status: params[:status])
     end
 
     # Optional filtering by patient
