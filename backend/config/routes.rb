@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Authentication routes
+  post "/auth/login", to: "authentication#login"
+  post "/auth/register", to: "authentication#register"
+  get "/auth/me", to: "authentication#me"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # Health check
+  get "/health", to: proc { [200, {}, ["OK"]] }
 end
