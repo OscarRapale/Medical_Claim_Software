@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   post "/auth/register", to: "authentication#register"
   get "/auth/me", to: "authentication#me"
 
+  # Export endpoint
+  get "/claims/export", to: "claims_exports#export"
+
   # CRUD resources
   resources :patients
   resources :claims
