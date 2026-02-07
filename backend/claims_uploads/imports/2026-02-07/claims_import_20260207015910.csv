@@ -1,0 +1,13 @@
+patient_first_name,patient_last_name,patient_dob,claim_number,service_date,amount,status
+Juan,Rivera,1982-04-15,CLM-2025-001,2025-01-10,325.00,pending
+Carmen,Santos,1975-08-22,CLM-2025-002,2025-01-12,150.50,submitted
+Luis,Ortiz,1990-12-03,CLM-2025-003,2025-01-14,89.99,paid
+Ana,Morales,1988-06-30,CLM-2025-004,2025-01-15,450.00,denied
+Roberto,Cruz,1965-02-18,CLM-2025-005,2025-01-16,275.75,pending
+Maria,Gonzalez,1992-09-25,CLM-2025-006,2025-01-17,180.00,submitted
+Carlos,Ramirez,1978-11-11,CLM-2025-007,2025-01-18,520.00,paid
+Sofia,Torres,1985-03-08,CLM-2025-008,2025-01-19,95.50,pending
+Pedro,Vargas,1970-07-14,CLM-2025-009,2025-01-20,310.25,denied
+Elena,Diaz,1995-01-28,CLM-2025-010,2025-01-21,200.00,submitted
+Miguel,Reyes,1983-05-19,CLM-2025-011,2025-01-22,425.00,paid
+Isabel,Flores,1991-10-07,CLM-2025-012,2025-01-23,175.99,pending

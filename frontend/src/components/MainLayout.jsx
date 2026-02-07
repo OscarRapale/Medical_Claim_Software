@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Layout, Menu, Button, Typography, Avatar, Dropdown } from "antd";
+import { Layout, Menu, Typography, Avatar, Dropdown } from "antd";
 import {
   FileTextOutlined,
   UploadOutlined,
@@ -7,7 +7,6 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  CloudUploadOutlined,
 } from "@ant-design/icons";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -34,7 +33,7 @@ const MainLayout = () => {
     },
     {
       key: "/import",
-      icon: <CloudUploadOutlined />,
+      icon: <UploadOutlined />,
       label: "Import Claims",
     },
   ];
@@ -54,76 +53,181 @@ const MainLayout = () => {
         trigger={null}
         collapsible
         collapsed={collapsed}
+        width={260}
         style={{
-          background: "fff",
-          boxShadow: "2px 0 8px rgba(0,0,0,0.05)",
+          background: "linear-gradient(180deg, #1a1f3c 0%, #0d1025 100%)",
+          boxShadow: "4px 0 15px rgba(0, 0, 0, 0.15)",
+          position: "fixed",
+          height: "100vh",
+          left: 0,
+          top: 0,
+          zIndex: 100,
         }}
       >
+        {/* Logo */}
         <div
           style={{
-            height: 64,
+            height: 80,
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            borderBottom: "1px solid #f0f0f0",
+            justifyContent: collapsed ? "center" : "flex-start",
+            padding: collapsed ? "0" : "0 24px",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
           }}
         >
-          <Text
-            strong
+          <div
             style={{
-              fontSize: collapsed ? 14 : 18,
-              color: "#1890ff",
-              whiteSpace: "nowrap",
+              width: 40,
+              height: 40,
+              borderRadius: "12px",
+              background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: collapsed ? 0 : 12,
             }}
           >
-            {collapsed ? "MC" : "Medical Claims"}
-          </Text>
+            <FileTextOutlined style={{ fontSize: 20, color: "#fff" }} />
+          </div>
+          {!collapsed && (
+            <Text
+              strong
+              style={{
+                fontSize: 15,
+                color: "#fff",
+                letterSpacing: "-0.5px",
+              }}
+            >
+              Medical Claims Management
+            </Text>
+          )}
         </div>
+
+        {/* Menu */}
         <Menu
           mode="inline"
           selectedKeys={[location.pathname]}
           items={menuItems}
           onClick={({ key }) => navigate(key)}
-          style={{ borderRight: "none" }}
-        />
-      </Sider>
-      <Layout>
-        <Header
           style={{
-            padding: "0 24px",
-            background: "#fff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+            background: "transparent",
+            borderRight: "none",
+            marginTop: 20,
+            padding: "0 12px",
+          }}
+          theme="dark"
+        />
+
+        {/* User section at bottom */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            padding: collapsed ? "20px 12px" : "20px 24px",
+            borderTop: "1px solid rgba(255, 255, 255, 0.08)",
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-          />
-          <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+          <Dropdown
+            menu={{ items: userMenuItems }}
+            placement="topRight"
+            trigger={["click"]}
+          >
             <div
               style={{
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
+                gap: 12,
+                padding: "12px",
+                borderRadius: "12px",
+                background: "rgba(255, 255, 255, 0.05)",
+                transition: "background 0.2s",
               }}
             >
               <Avatar
                 icon={<UserOutlined />}
-                style={{ backgroundColor: "#1890ff" }}
+                style={{
+                  backgroundColor: "#6366f1",
+                  flexShrink: 0,
+                }}
               />
-              <Text>{user?.email}</Text>
+              {!collapsed && (
+                <div style={{ overflow: "hidden" }}>
+                  <Text
+                    style={{
+                      color: "#fff",
+                      display: "block",
+                      fontWeight: 500,
+                      fontSize: 14,
+                    }}
+                  >
+                    {user?.email?.split("@")[0] || "User"}
+                  </Text>
+                  <Text
+                    style={{
+                      color: "rgba(255,255,255,0.5)",
+                      fontSize: 12,
+                      display: "block",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {user?.email}
+                  </Text>
+                </div>
+              )}
             </div>
           </Dropdown>
+        </div>
+      </Sider>
+
+      <Layout
+        style={{
+          marginLeft: collapsed ? 80 : 260,
+          transition: "margin-left 0.2s",
+          background: "#f0f2f5",
+        }}
+      >
+        <Header
+          style={{
+            padding: "0 32px",
+            background: "#fff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+            position: "sticky",
+            top: 0,
+            zIndex: 99,
+            height: 72,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <div
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                width: 40,
+                height: 40,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "10px",
+                cursor: "pointer",
+                background: "#f5f5f5",
+                transition: "background 0.2s",
+              }}
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </div>
+          </div>
         </Header>
+
         <Content
           style={{
-            margin: 24,
-            minHeight: 280,
+            margin: 32,
+            minHeight: "calc(100vh - 72px - 64px)",
           }}
         >
           <Outlet />
