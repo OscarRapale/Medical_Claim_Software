@@ -24,7 +24,7 @@ This application allows medical centers to:
 1. **Clone the repository**
    ```bash
    git clone https://github.com/OscarRapale/Medical_Claim_Software.git
-   cd medical-claim-software
+   cd medical_claim_software
    ```
 
 2. **Build and start the containers**
