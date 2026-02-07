@@ -23,7 +23,7 @@ This application allows medical centers to:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/medical-claims.git
+   git clone https://github.com/OscarRapale/Medical_Claim_Software.git
    cd medical-claims
    ```
 
@@ -71,7 +71,7 @@ Password: password123
 ## Project Structure
 
 ```
-medical-claims/
+Medical_Claim_Software/
 ├── backend/                 # Rails API
 │   ├── app/
 │   │   ├── controllers/     # API endpoints
