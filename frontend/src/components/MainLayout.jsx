@@ -93,7 +93,7 @@ const MainLayout = () => {
             <Text
               strong
               style={{
-                fontSize: 15,
+                fontSize: 20,
                 color: "#fff",
                 letterSpacing: "-0.5px",
               }}
